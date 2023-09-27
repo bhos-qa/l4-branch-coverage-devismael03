@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.json.JSONObject;
+
 public class BookLibrary {
     private static final Logger logger = Logger.getLogger("Logger");
     private List<Book> books;
@@ -43,13 +46,17 @@ public class BookLibrary {
         System.out.print("Enter author name: ");
         String author = scanner.nextLine();
         scanner.close();
+
+        String json = "{\"author\":\""+ author +"\"}";
+        JSONObject obj = new JSONObject(json);
+
         List<Book> result = new ArrayList<>();
         for (Book book : books) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
                 result.add(book);
             }
         }
-        logger.log(Level.INFO, "Following author books requested: {0} ", author);
+        logger.log(Level.INFO, "Following author books requested: {0} ", obj);
         return result;
     }
 
