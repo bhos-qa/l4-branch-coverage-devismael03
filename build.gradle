@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id "org.sonarqube" version "4.3.1.3277"
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+sonar {
+    properties {
+        property "sonar.projectKey", "bhos-qa_l4-branch-coverage-devismael03"
+        property "sonar.organization", "bhos-qa"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+
+jacoco {
+    toolVersion = "0.8.9"
+}
+repositories {
+    mavenCentral()
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+
+    reports {
+        xml.required = true
+        csv.required = false
+    }
+}
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
