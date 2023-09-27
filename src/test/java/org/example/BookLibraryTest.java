@@ -42,13 +42,13 @@ public class BookLibraryTest {
 
     @Test
     public void BorrowBook() {
-        library.borrowBook(book1);
+        library.borrowBook(book1, "BOOK BORROWED");
         assertTrue(book1.isBorrowed());
     }
 
     @Test
     public void ReturnBook() {
-        library.borrowBook(book1);
+        library.borrowBook(book1, "BOOK BORROWED");
         library.returnBook(book1);
         assertFalse(book1.isBorrowed());
     }

@@ -2,8 +2,10 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class BookLibrary {
+    private static final Logger logger = Logger.getLogger("Logger");
     private List<Book> books;
 
     public BookLibrary() {
@@ -42,9 +44,10 @@ public class BookLibrary {
         return result;
     }
 
-    public void borrowBook(Book book) {
+    public void borrowBook(Book book, String data) {
         if (books.contains(book) && !book.isBorrowed()) {
             book.setBorrowed(true);
+            logger.log(Level.INFO, "Data: {0} ", data);
         }
     }
 
