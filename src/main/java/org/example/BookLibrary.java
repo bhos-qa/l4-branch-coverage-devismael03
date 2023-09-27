@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class BookLibrary {
@@ -37,13 +38,18 @@ public class BookLibrary {
         return result;
     }
 
-    public List<Book> findBooksByAuthor(String author) {
+    public List<Book> findBooksByAuthor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter author name: ");
+        String author = scanner.nextLine();
+        scanner.close();
         List<Book> result = new ArrayList<>();
         for (Book book : books) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
                 result.add(book);
             }
         }
+        logger.log(Level.INFO, "Following author books requested: {0} ", author);
         return result;
     }
 
