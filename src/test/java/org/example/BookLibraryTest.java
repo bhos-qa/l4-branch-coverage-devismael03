@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,13 +42,13 @@ public class BookLibraryTest {
     }
 
     @Test
-    public void BorrowBook() {
+    public void BorrowBook() throws IOException {
         library.borrowBook(book1, "BOOK BORROWED");
         assertTrue(book1.isBorrowed());
     }
 
     @Test
-    public void ReturnBook() {
+    public void ReturnBook() throws IOException {
         library.borrowBook(book1, "BOOK BORROWED");
         library.returnBook(book1);
         assertFalse(book1.isBorrowed());

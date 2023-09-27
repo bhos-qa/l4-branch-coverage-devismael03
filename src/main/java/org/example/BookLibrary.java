@@ -1,5 +1,8 @@
 package org.example;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,10 +47,19 @@ public class BookLibrary {
         return result;
     }
 
-    public void borrowBook(Book book, String data) {
+    public void borrowBook(Book book, String data) throws IOException {
         if (books.contains(book) && !book.isBorrowed()) {
             book.setBorrowed(true);
             logger.log(Level.INFO, "Data: {0} ", data);
+            File file = new File("log.txt");
+            if (!file.exists()) { // Noncompliant
+                System.out.print("FILE NOT FOUND");
+            }
+            else{
+                FileWriter writer = new FileWriter(file);
+                writer.write("BOOK BORROWED");
+                writer.close();
+            }
         }
     }
 
