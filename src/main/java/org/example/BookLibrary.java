@@ -50,6 +50,16 @@ public class BookLibrary {
         String json = "{\"author\":\""+ author +"\"}";
         JSONObject obj = new JSONObject(json);
 
+
+        File tempDir;
+        try {
+            tempDir = File.createTempFile("log_book_borrow", null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        tempDir.delete();
+        tempDir.mkdir();
+
         List<Book> result = new ArrayList<>();
         for (Book book : books) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
